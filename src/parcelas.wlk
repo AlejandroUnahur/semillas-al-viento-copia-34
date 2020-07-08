@@ -31,6 +31,19 @@ class Parcela {
 	
 	method plantar(planta) {
 		plantasQueTiene.add(planta)
+		if (self.superaLaCantidadMaxima() or self.recibe2HorasMasDeSol(planta)) {
+			self.error("Se ha superado al cantidad maxima o la parcela recibe 2 horas mas de sol que los que la planta tolera ")
+		}
+	}
+	
+	method superaLaCantidadMaxima() 
+	{
+		return plantasQueTiene.size() > self.cantMaxDePlantasQueTolera()
+	}
+	
+	method recibe2HorasMasDeSol(planta) 
+	{
+		return self.horasDeSolQueRecibe() >= planta.horasDeSolQueTolera() + 2
 	}
 	
 	method cantidadDePlantasQueTiene() 
